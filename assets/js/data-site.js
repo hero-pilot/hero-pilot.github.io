@@ -25,15 +25,15 @@ const SITE = {
   ],
 
   // Skill / tech chips shown in the About section
-  skills: ["TypeScript", "React", "Node.js", "Python", "Rust", "Docker", "SQL", "Git", "Linux"],
+  skills: ["problem solving", "Python", "Go", "Javascript", "fastapi", "Django","Docker", "Redis","Elasticsearch","SQL", "Git", "Linux"],
 
   // Your social links — replace the urls with your real profiles.
   // Delete any line you don't use, or add new ones (id must exist in ICONS inside app.js).
   socials: [
-    { id: "github",   label: "GitHub",   url: "https://github.com/your-username" },
-    { id: "x",        label: "X",        url: "https://x.com/your-handle" },
-    { id: "linkedin", label: "LinkedIn", url: "https://linkedin.com/in/your-handle" },
-    { id: "mail",     label: "Email",    url: "mailto:hello@example.com" },
+    { id: "github",   label: "GitHub",   url: "https://github.com/hero-pilot" },
+    { id: "x",        label: "X",        url: "https://x.com/BunkerPilot" },
+    { id: "linkedin", label: "LinkedIn", url: "https://linkedin.com/in/erfan-dousti" },
+    { id: "mail",     label: "Email",    url: "mailto:erfan.flashpoint@gmail.com" },
     { id: "rss",      label: "Feed",     url: "#/blog" }
   ]
 };
