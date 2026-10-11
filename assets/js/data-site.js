@@ -4,19 +4,18 @@
    ════════════════════════════════════════════════════════════════ */
 
 const SITE = {
-  name: "Alex Carter",          // ← your name (used in hero, nav, footer)
-  firstName: "Alex",            // ← first name (hero glitch line 1)
-  lastName: "Carter",           // ← last name (hero glitch line 2)
-  initials: "AC",               // ← avatar hexagon letters
-  role: "Software Engineer · Web Tinkerer",   // ← shown under your name
+  name: "Erfan Dousti",          // ← your name (used in hero, nav, footer)
+  firstName: "Erfan",            // ← first name (hero glitch line 1)
+  lastName: "Dousti",           // ← last name (hero glitch line 2)
+  initials: "ED",               // ← avatar hexagon letters
+  role: "Software Engineer",   // ← shown under your name
   location: "SECTOR 7G · EARTH",               // ← fun location tag
-  email: "hello@example.com",
+  email: "erfan.flashpoint@gmail.com",
 
   // Rotating typewriter lines in the hero (keep 2-5 short lines)
   taglines: [
-    "I build things for the web and write about the journey.",
+    "I build things and write about the journey.",
     "Shipping code, collecting scars, sharing the maps.",
-    "Turning caffeine into commits since 2019."
   ],
 
   // "About the operator" paragraphs (2-3 sentences each works best)
