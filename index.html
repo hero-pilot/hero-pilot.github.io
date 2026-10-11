@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS // Alex Carter — Personal Terminal</title>
+<meta name="description" content="Alex Carter's personal corner of the grid — blog entries, weekly mission reports and transmissions from the code frontier.">
+<meta name="theme-color" content="#04060e">
+<meta property="og:title" content="NEXUS // Alex Carter">
+<meta property="og:description" content="Blog entries, weekly mission reports and transmissions from the code frontier.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/views.css">
+</head>
+<body>
+<a class="skip-link" href="#app">Skip to content</a>
+
+<!-- ══ background layers ══ -->
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="nebula nebula-1" aria-hidden="true"></div>
+<div class="nebula nebula-2" aria-hidden="true"></div>
+<div class="nebula nebula-3" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- ══ boot overlay ══ -->
+<div id="boot" aria-hidden="true">
+  <div class="boot-box">
+    <div class="boot-glyph">
+      <svg viewBox="0 0 64 64" width="72" height="72" aria-hidden="true">
+        <path d="M32 7 55 20v24L32 57 9 44V20z" fill="none" stroke="#00f0ff" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M32 13 49 22.5v21L32 53 15 43.5v-21z" fill="none" stroke="#00f0ff" stroke-width="1" opacity=".25"/>
+        <text x="31" y="41" font-family="monospace" font-size="20" font-weight="700" text-anchor="middle" fill="#00f0ff">&gt;_</text>
+      </svg>
+    </div>
+    <div class="boot-title">NEXUS&nbsp;TERMINAL</div>
+    <div class="boot-sub">PERSONAL BROADCAST SYSTEM</div>
+    <div class="boot-lines" id="bootLines"></div>
+    <div class="boot-bar"><span id="bootFill"></span></div>
+    <div class="boot-skip">CLICK ANYWHERE TO SKIP</div>
+  </div>
+</div>
+
+<!-- ══ navigation ══ -->
+<header class="nav" id="nav">
+  <div class="nav-inner container">
+    <a href="#/" class="brand" aria-label="Home">
+      <svg viewBox="0 0 64 64" class="brand-glyph" aria-hidden="true">
+        <path d="M32 7 55 20v24L32 57 9 44V20z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+        <text x="31" y="41" font-family="monospace" font-size="22" font-weight="700" text-anchor="middle" fill="currentColor">&gt;_</text>
+      </svg>
+      <span class="brand-name"><span data-name>alex</span><span class="brand-dot">.</span><span data-handle>carter</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#/" data-route="home"><span class="nl-idx">01/</span>HOME</a>
+      <a href="#/blog" data-route="blog"><span class="nl-idx">02/</span>BLOG</a>
+      <a href="#/reports" data-route="reports"><span class="nl-idx">03/</span>REPORTS</a>
+    </nav>
+    <div class="nav-status" aria-hidden="true">
+      <span class="status-dot"></span>
+      <span class="mono" id="navClock">00:00:00</span>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ══ mobile menu ══ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mm-inner">
+    <div class="mm-head mono">// NAVIGATION</div>
+    <a href="#/" class="mm-link" data-route="home"><span class="mm-idx">01</span>HOME<em>Intro &amp; transmissions</em></a>
+    <a href="#/blog" class="mm-link" data-route="blog"><span class="mm-idx">02</span>BLOG<em>Long-form entries</em></a>
+    <a href="#/reports" class="mm-link" data-route="reports"><span class="mm-idx">03</span>REPORTS<em>Weekly progress logs</em></a>
+    <div class="mm-foot">
+      <div class="mm-socials" id="mmSocials"></div>
+      <div class="mono dim">SIGNAL STRENGTH ▮▮▮▮▯</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ app views ══ -->
+<main id="app">
+  <section class="view" id="view-home" aria-label="Home"></section>
+  <section class="view" id="view-blog" aria-label="Blog archive"></section>
+  <section class="view" id="view-reports" aria-label="Mission reports"></section>
+  <section class="view" id="view-read" aria-label="Reading"></section>
+</main>
+
+<!-- ══ footer ══ -->
+<footer class="footer" id="footer">
+  <div class="container footer-grid">
+    <div class="f-col">
+      <div class="f-brand">
+        <svg viewBox="0 0 64 64" class="brand-glyph" aria-hidden="true">
+          <path d="M32 7 55 20v24L32 57 9 44V20z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+          <text x="31" y="41" font-family="monospace" font-size="22" font-weight="700" text-anchor="middle" fill="currentColor">&gt;_</text>
+        </svg>
+        <span>NEXUS<b>//</b><span data-name>ALEX</span></span>
+      </div>
+      <p class="f-about">A personal terminal orbiting the code frontier — long-form entries on software, and a public ledger of weekly learning missions. Static, dark and built for GitHub Pages.</p>
+    </div>
+    <div class="f-col">
+      <div class="f-head mono">// NAVIGATE</div>
+      <a href="#/">Home</a>
+      <a href="#/blog">Blog archive</a>
+      <a href="#/reports">Mission reports</a>
+      <a href="#/" id="fTopLink">Top of page</a>
+    </div>
+    <div class="f-col">
+      <div class="f-head mono">// UPLINK</div>
+      <div class="f-socials" id="footerSocials"></div>
+      <div class="f-station mono"><span data-location>SECTOR 7G · EARTH</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container fb-inner">
+      <span>© <span id="year">2026</span> <span data-name>ALEX CARTER</span> — ALL SIGNALS RESERVED</span>
+      <span class="mono">SYS&nbsp;STATUS:&nbsp;NOMINAL&nbsp;<i class="status-dot"></i></span>
+      <span class="mono dim">DEPLOYED VIA GITHUB&nbsp;PAGES</span>
+    </div>
+  </div>
+</footer>
+
+<div id="progressBar" aria-hidden="true"></div>
+
+<script src="assets/js/data-site.js"></script>
+<script src="assets/js/data-posts.js"></script>
+<script src="assets/js/data-reports.js"></script>
+<script src="assets/js/effects.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
